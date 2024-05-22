@@ -7,7 +7,7 @@ const Footer = () => {
         <IconLogo source="/tso_logo.png" campaignName="Telesupport" link="/"/>
       </div>
       <p className="text-lg font-medium text-yellow-600 pr-7">
-        Created By Mowgli
+        Created By Luis Molina
       </p>
     </div>
   );
