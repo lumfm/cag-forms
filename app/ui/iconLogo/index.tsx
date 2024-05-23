@@ -15,7 +15,7 @@ const IconLogo = ({source, campaignName, link} : LogoProps) => {
                 alt={`Logo for ${campaignName}`}
                 width={85}
                 height={85}
-                className='rounded-lg shadow-lg shadow-blue-950'
+                className='campaign-icon'
             />        
         </Link>
     );

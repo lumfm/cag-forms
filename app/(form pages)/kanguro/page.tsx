@@ -1,3 +1,5 @@
+'use client'
+
 const KanguroPage = () => {
     return (
         <div>

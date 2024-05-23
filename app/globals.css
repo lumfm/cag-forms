@@ -8,6 +8,13 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+@layer components {
+  .campaign-icon {
+    @apply rounded-[43px] shadow-lg transition-all ease-in duration-200
+    hover:shadow-slate-600 hover:rounded-2xl ;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

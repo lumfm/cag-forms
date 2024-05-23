@@ -5,7 +5,7 @@ import Header from "./ui/header";
 import Footer from "./ui/footer";
 
 export const metadata: Metadata = {
-  title: "CAG",
+  title: 'CAG',
   description: "CAG FNOL forms, powered and handled by TSO",
 };
 
@@ -19,7 +19,7 @@ export default function RootLayout({
       <body className={noto_sans.className}>
         <div className="h-screen flex flex-col justify-between">
           <Header></Header>
-          <main className="h-full">{children}</main>
+          <main className="flex h-full">{children}</main>
           <Footer></Footer>
         </div>
       </body>

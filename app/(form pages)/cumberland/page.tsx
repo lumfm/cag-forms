@@ -1,3 +1,5 @@
+'use client'
+
 const CumberlandPage = () => {
     return (
         <div>

@@ -2,18 +2,18 @@ import IconLogo from "../iconLogo";
 
 const Header = () => {
   return (
-    <header className="flex justify-between h-auto items-center py-2.5 bg-blue-900">
+    <header className="sticky top-0 left-0 w-full flex justify-between items-center py-2.5 bg-primary">
       <div className="pl-5">
         <IconLogo source="/cag_logo.jpg" campaignName="CAG" link="/" />
       </div>
       <div className="flex justify-evenly w-full">
         <IconLogo
-          source="/aa_logo.png"
+          source="/aa_logo.jpg"
           campaignName="Assurance America"
           link="assurance"
         />
         <IconLogo
-          source="/monarch_logo.webp"
+          source="/monarch_logo.jpg"
           campaignName="Monarch National"
           link="monarch"
         />
