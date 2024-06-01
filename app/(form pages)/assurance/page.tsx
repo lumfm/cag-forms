@@ -1,24 +1,39 @@
 "use client";
 
-import BasicCallerInputs from "@/app/lib/basicCallerInputs";
-import { SubmitHandler, useForm } from "react-hook-form";
+import AssuranceStepper from "@/app/ui/steppers/assuranceStepper";
+import { Box, Divider, Paper, Typography } from "@mui/material";
+import { blue, grey } from "@mui/material/colors";
+import { NextPage } from "next";
 
-const Assurance = () => {
-
-    // const {
-    //     register,
-    //     handleSubmit,
-    //     formState: { errors },
-    //   } = useForm<Inputs>()
-    //   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
-
+const Assurance: NextPage = () => {
   return (
-    <div>
-      <h1>Assurance Page</h1>
-      <form>
-        <BasicCallerInputs />
-      </form>
-    </div>
+    <Paper elevation={3} sx={{
+      width: {
+        xs: '80%',
+        lg: '45%',
+      },
+      height: 'fit-content',
+      paddingY: '2rem',
+      marginTop: '6.5rem',
+      bgcolor: grey[200],
+      borderRadius: '0.7rem'
+    }}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"flex-start"}
+        alignItems={"center"}
+      >
+        <Typography variant="h3" color={blue[700]} gutterBottom>
+          Assurance America
+        </Typography>
+
+        <Divider flexItem variant="middle"/>
+
+        <AssuranceStepper />
+
+      </Box>
+    </Paper>
   );
 };
 

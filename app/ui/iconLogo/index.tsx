@@ -13,8 +13,8 @@ const IconLogo = ({source, campaignName, link} : LogoProps) => {
             <Image
                 src={source}
                 alt={`Logo for ${campaignName}`}
-                width={85}
-                height={85}
+                width={60}
+                height={60}
                 className='campaign-icon'
             />        
         </Link>
