@@ -1,39 +1,41 @@
 "use client";
 
-import { IntakeReasonInputs } from "@/app/lib/definitions";
-import { Box, Button, MenuItem, TextField } from "@mui/material";
-import { green } from "@mui/material/colors";
+import { IntakeLossTypeInputs } from "@/app/lib/definitions";
+import { Box, Button } from "@mui/material";
+import { blueGrey } from "@mui/material/colors";
 import { useForm } from "react-hook-form";
-import ReasonForCall from "../customFormInput/customReasonForCall";
-import CustomMultiline from "../customFormInput/customMultilineInput";
+import CustomMultiline from "../../customFormInput/customMultilineInput";
+import PropertyLossType from "../../customFormInput/customPropertyLossType";
 
 interface IIntakeProps {
   handleBack: () => void;
   handleNext: () => void;
 }
 
-const AssuranceDescriptionIntake = ({ handleBack, handleNext }: IIntakeProps) => {
-
+const MonarchDescriptionIntake = ({ handleBack, handleNext }: IIntakeProps) => {
   const { handleSubmit, control } = useForm({
     defaultValues: {
-      reason: '',
-      description: '',
-      intake: '',
+      description: "",
+      loss_type: "",
     },
   });
 
-  const onSubmit = (data: IntakeReasonInputs) => {
+  const onSubmit = (data: IntakeLossTypeInputs) => {
     console.log(data);
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Box display={"flex"} flexDirection={"column"} gap={"1.5rem"}>
+        <CustomMultiline
+          name="description"
+          label="Loss Description"
+          control={control}
+          rows={9}
+          required={false}
+        />
 
-        <ReasonForCall name="reason" control={control} />
-
-        <CustomMultiline name="description" label="Description" control={control} rows={3} required={false}/>
-        <CustomMultiline name="intake" label="Intake / Status Note" control={control} rows={7} required={false}/>
+        <PropertyLossType name="loss_type" control={control} />
 
         <Box display={"flex"} justifyContent={"space-around"} gap={"1rem"}>
           <Button
@@ -49,10 +51,10 @@ const AssuranceDescriptionIntake = ({ handleBack, handleNext }: IIntakeProps) =>
             onClick={handleNext}
             sx={{
               width: "50%",
-              bgcolor: green[800],
+              bgcolor: blueGrey[800],
               color: "white",
               ":hover": {
-                bgcolor: green[500],
+                bgcolor: blueGrey[500],
               },
             }}
           >
@@ -64,4 +66,4 @@ const AssuranceDescriptionIntake = ({ handleBack, handleNext }: IIntakeProps) =>
   );
 };
 
-export default AssuranceDescriptionIntake;
+export default MonarchDescriptionIntake;

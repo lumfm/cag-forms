@@ -1,18 +1,20 @@
 "use client";
 
-import { Box, Button, MenuItem, TextField } from "@mui/material";
-import { green } from "@mui/material/colors";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { Box, Button } from "@mui/material";
+import { blueGrey } from "@mui/material/colors";
+import { useForm } from "react-hook-form";
 import { BasicInputs } from "@/app/lib/definitions";
 import CustomFormBasicInput from "../customFormInput";
 import LanguageDropdown from "../customFormInput/customLanguageDropdown";
 import RelationshipDropdown from "../customFormInput/customAutoRelationshipDropdown";
+import CustomDatePicker from "../customFormInput/customDatePicker";
+import dayjs from "dayjs";
 
 interface IBasicFormProps {
   handleNext: () => void;
 }
 
-const BasicCallerForm = ({ handleNext }: IBasicFormProps) => {
+const BasicCallerFnolForm = ({ handleNext }: IBasicFormProps) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       policy_claim: "",
@@ -24,6 +26,7 @@ const BasicCallerForm = ({ handleNext }: IBasicFormProps) => {
       languageOther: "",
       relationship: "",
       relationshipOther: "",
+      date_of_loss: dayjs(new Date()),
     },
   });
 
@@ -40,37 +43,37 @@ const BasicCallerForm = ({ handleNext }: IBasicFormProps) => {
         alignItems={"center"}
         gap={"1rem"}
       >
+          <CustomFormBasicInput
+            name="firstName"
+            label="First Name"
+            control={control}
+            required={false}
+          />
+  
+          <CustomFormBasicInput
+            name="lastName"
+            label="Last Name"
+            control={control}
+            required={false}
+          />
+  
+          <CustomFormBasicInput
+            name="phoneNumber"
+            label="Phone Number"
+            control={control}
+            required={false}
+          />
+  
+          <CustomFormBasicInput
+            name="alternativeNumber"
+            label="Alternative Number"
+            control={control}
+            required={false}
+          />
+
         <CustomFormBasicInput
           name="policy_claim"
           label="Policy / Claim #"
-          control={control}
-          required={false}
-        />
-
-        <CustomFormBasicInput
-          name="firstName"
-          label="First Name"
-          control={control}
-          required={false}
-        />
-
-        <CustomFormBasicInput
-          name="lastName"
-          label="Last Name"
-          control={control}
-          required={false}
-        />
-
-        <CustomFormBasicInput
-          name="phoneNumber"
-          label="Phone Number"
-          control={control}
-          required={false}
-        />
-
-        <CustomFormBasicInput
-          name="alternativeNumber"
-          label="Alternative Number"
           control={control}
           required={false}
         />
@@ -87,14 +90,16 @@ const BasicCallerForm = ({ handleNext }: IBasicFormProps) => {
           control={control}
         />
 
+        <CustomDatePicker name="date_of_loss" label="Date of Loss" control={control} />
+
         <Button
           type="submit"
           sx={{
             width: "60%",
-            bgcolor: green[800],
+            bgcolor: blueGrey[800],
             color: "white",
             ":hover": {
-              bgcolor: green[500],
+              bgcolor: blueGrey[500],
             },
           }}
         >
@@ -105,4 +110,4 @@ const BasicCallerForm = ({ handleNext }: IBasicFormProps) => {
   );
 };
 
-export default BasicCallerForm;
+export default BasicCallerFnolForm;

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import BasicCallerForm from "../formUtils/basicCallerForm";
-import AssuranceDescriptionIntake from "../formUtils/assuranceDescriptionIntake";
+import AssuranceDescriptionIntake from "../formUtils/assurance/assuranceDescriptionIntake";
 import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
 import ConfirmationSave from "../formUtils/confirmationSave";
 
@@ -22,7 +22,7 @@ export default function AssuranceStepper() {
   const getStepContent = (stepIndex: number): React.ReactNode => {
     switch (stepIndex) {
       case 0:
-        return <BasicCallerForm handleNext = {handleNext} activeStep = {activeStep}/>;
+        return <BasicCallerForm handleNext = {handleNext} />;
       case 1:
         return (
           <AssuranceDescriptionIntake handleBack={handleBack} handleNext={handleNext}/>

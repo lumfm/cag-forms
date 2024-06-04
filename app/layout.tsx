@@ -5,6 +5,8 @@ import Header from "./ui/header";
 import Footer from "./ui/footer";
 import { Box } from "@mui/material";
 import { grey } from "@mui/material/colors";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 export const metadata: Metadata = {
   title: "CAG",
@@ -28,9 +30,16 @@ export default function RootLayout({
           <Header />
 
           {/* <main className="flex justify-center h-fit w-full bg-slate-600">{children}</main> */}
-          <Box display={"flex"} justifyContent={"center"} height={'100vh'} bgcolor={grey[400]}>
-            {children}
-          </Box>
+          
+            <Box
+              display={"flex"}
+              justifyContent={"center"}
+              height={"100vh"}
+              bgcolor={grey[400]}
+            >
+              {children}
+            </Box>
+
 
           <Footer />
         </Box>

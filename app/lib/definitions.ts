@@ -25,6 +25,7 @@ export interface BasicInputs {
   languageOther? : string;
   relationship: callerRelationship;
   relationshipOther? : string;
+  date_of_loss? : Date;
 }
 
 export enum IntakeReasonEnums {
@@ -39,4 +40,19 @@ export interface IntakeReasonInputs {
   reason: IntakeReasonEnums,
   description?: string,
   intake: string,
+}
+
+export interface IntakeLossTypeInputs {
+  description: string,
+  loss_type: string,
+}
+
+export interface MonarchAddressInputs {
+  email: string;
+  address1: string;
+  address2?: string;
+  zip_code: string;
+  city: string;
+  county: string;
+  state: string;
 }
