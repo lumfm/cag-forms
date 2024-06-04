@@ -9,9 +9,10 @@ import CustomMultiline from "../customFormInput/customMultilineInput";
 
 interface IIntakeProps {
   handleBack: () => void;
+  handleNext: () => void;
 }
 
-const AssuranceDescriptionIntake = ({ handleBack }: IIntakeProps) => {
+const AssuranceDescriptionIntake = ({ handleBack, handleNext }: IIntakeProps) => {
 
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -45,6 +46,7 @@ const AssuranceDescriptionIntake = ({ handleBack }: IIntakeProps) => {
           </Button>
           <Button
             type="submit"
+            onClick={handleNext}
             sx={{
               width: "50%",
               bgcolor: green[800],

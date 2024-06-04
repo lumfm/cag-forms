@@ -3,7 +3,8 @@
 import * as React from "react";
 import BasicCallerForm from "../formUtils/basicCallerForm";
 import AssuranceDescriptionIntake from "../formUtils/assuranceDescriptionIntake";
-import { Box, Button, Paper, Step, StepLabel, Stepper } from "@mui/material";
+import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
+import ConfirmationSave from "../formUtils/confirmationSave";
 
 export default function AssuranceStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -11,7 +12,7 @@ export default function AssuranceStepper() {
   const steps = ["Caller Information", "Description / Intake"];
 
   const handleNext = () => {
-    activeStep === 0 && setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
 
   const handleBack = () => {
@@ -24,8 +25,10 @@ export default function AssuranceStepper() {
         return <BasicCallerForm handleNext = {handleNext} activeStep = {activeStep}/>;
       case 1:
         return (
-          <AssuranceDescriptionIntake handleBack={handleBack}/>
+          <AssuranceDescriptionIntake handleBack={handleBack} handleNext={handleNext}/>
         );
+      case 2:
+        return <ConfirmationSave/>
     }
   };
 
