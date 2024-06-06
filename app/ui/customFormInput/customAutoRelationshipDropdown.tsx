@@ -7,9 +7,10 @@ interface ICustomInputProps {
   name1: string;
   name2: string;
   control: Control<any>;
+  required: boolean;
 }
 
-const RelationshipDropdown = ({ name1, name2, control }: ICustomInputProps) => {
+const RelationshipDropdown = ({ name1, name2, control, required }: ICustomInputProps) => {
   const [selectedRelationship, setSelectedRelationship] = useState("");
 
   return (
@@ -17,6 +18,7 @@ const RelationshipDropdown = ({ name1, name2, control }: ICustomInputProps) => {
       <Controller
         name={name1}
         control={control}
+        rules={{required: required}}
         render={({ field: { value, onChange } }) => (
           <TextField
             label="Relationship"

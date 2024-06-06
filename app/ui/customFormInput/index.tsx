@@ -19,10 +19,10 @@ const CustomFormBasicInput = ({
     <Controller
       name={name}
       control={control}
+      rules={{required: required}}
       render={({ field: {onChange, value}}) => (
         <TextField
           label={label}
-          required={required}
           onChange={onChange}
           value={value}
           size="small"

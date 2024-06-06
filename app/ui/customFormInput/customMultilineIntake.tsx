@@ -22,6 +22,7 @@ const CustomMultilineIntake = ({
   const { getValues } = useFormContext();
   const [template, setTemplate] = useState("");
   const [language, setLanguage] = useState('')
+  const [relation, setRelation] = useState('')
 
 
     const firstName =
@@ -34,24 +35,24 @@ const CustomMultilineIntake = ({
       getValues("alternativeNumber") === undefined
         ? ""
         : getValues("alternativeNumber");
-    const languagePref =
-      getValues("languagePref") === undefined
-        ? ""
-        : getValues("languagePref")[0].toUpperCase() +
-          getValues("languagePref").substring(1);
-    const languageOther =
-      getValues("languageOther") === undefined
-        ? ""
-        : getValues("languageOther");
-    const relationship =
-      getValues("relationship") === undefined
-        ? ""
-        : getValues("relationship")[0].toUpperCase() +
-          getValues("relationship").substring(1);
-    const relationshipOther =
-      getValues("relationshipOther") === undefined
-        ? ""
-        : getValues("relationshipOther");
+    // const languagePref =
+    //   getValues("languagePref") === undefined
+    //     ? ""
+    //     : getValues("languagePref")[0].toUpperCase() +
+    //       getValues("languagePref").substring(1);
+    // const languageOther =
+    //   getValues("languageOther") === undefined
+    //     ? ""
+    //     : getValues("languageOther");
+    // const relationship =
+    //   getValues("relationship") === undefined
+    //     ? ""
+    //     : getValues("relationship")[0].toUpperCase() +
+    //       getValues("relationship").substring(1);
+    // const relationshipOther =
+    //   getValues("relationshipOther") === undefined
+    //     ? ""
+    //     : getValues("relationshipOther");
 
     const fullPhone = `(${phoneNumber.slice(0, 3)})${phoneNumber.slice(
       3,
@@ -69,8 +70,11 @@ const CustomMultilineIntake = ({
       getValues("languagePref") === 'other' ? setLanguage(getValues("languageOther")) : setLanguage(getValues("languagePref")[0].toUpperCase() +
       getValues("languagePref").substring(1));
 
+      getValues("relationship") === 'other' ? setRelation(getValues("relationshipOther")) : setRelation(getValues("relationship")[0].toUpperCase() +
+      getValues("relationship").substring(1));
+
       if (reason !== "status") {
-        setTemplate(`Caller: ${firstName} ${lastName}, ${relationship}
+        setTemplate(`Caller: ${firstName} ${lastName}, ${relation}
 Ph: ${fullPhone} - ${fullAltPhone}
 Called to report an accident.
 Set claim up.
@@ -78,7 +82,7 @@ Provided caller with the adj and claim information.
 Set 2 business days for callback expectations.
 Language Preference: ${language}`);
       } else {
-        setTemplate(`Caller: ${firstName} ${lastName}, ${relationship}
+        setTemplate(`Caller: ${firstName} ${lastName}, ${relation}
 Ph: ${fullPhone} - ${fullAltPhone}
 Reason:
 Resolution:

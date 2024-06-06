@@ -13,9 +13,10 @@ interface ICustomInputProps {
   name1: string;
   name2: string;
   control: Control<any>;
+  required: boolean;
 }
 
-const LanguageDropdown = ({ name1, name2, control }: ICustomInputProps) => {
+const LanguageDropdown = ({ name1, name2, control, required }: ICustomInputProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
   return (
@@ -27,6 +28,7 @@ const LanguageDropdown = ({ name1, name2, control }: ICustomInputProps) => {
       <Controller
         name={name1}
         control={control}
+        rules={{required: required}}
         render={({ field: { value, onChange } }) => (
           <TextField
             select

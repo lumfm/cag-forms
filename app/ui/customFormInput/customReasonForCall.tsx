@@ -27,7 +27,6 @@ const ReasonForCall = ({ name, control, handleChange }: ICustomInputProps) => {
           }}
           size="small"
           fullWidth
-          required
         >
           {callReasons.map((reason) => (
             <MenuItem key={reason.value} value={reason.value}>
