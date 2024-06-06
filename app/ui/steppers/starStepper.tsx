@@ -1,17 +1,31 @@
 "use client";
 
 import * as React from "react";
-import BasicCallerForm from "../formUtils/basicCallerForm";
-import AssuranceDescriptionIntake from "../formUtils/assurance/assuranceDescriptionIntake";
 import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
 import ConfirmationSave from "../formUtils/confirmationSave";
-import { FormProvider, useForm } from "react-hook-form";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import MonarchAddressIntake from "../formUtils/monarch/monarchAddressIntake";
+import MonarchDescriptionIntake from "../formUtils/monarch/monarchDescriptionIntake";
+import BasicCallerAutoForm from "../formUtils/basicCallerAutoForm";
 
-export default function AssuranceStepper() {
+const stepStyle = {
+  "& .Mui-active": {
+    "&.MuiStepIcon-root": {
+      color: "#43a047",
+    },
+  },
+  "& .Mui-completed": {
+    "&.MuiStepIcon-root": {
+      color: "#43a047",
+    },
+  },
+};
+
+export default function StarStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const methods = useForm();
 
-  const steps = ["Caller Information", "Description / Intake"];
+  const steps = ["Caller Information", "Named Insured / IV Driver", "IV", "CV Owner / Driver", "CV", "Additional Info", "Injured", "Accident Description"];
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -24,24 +38,23 @@ export default function AssuranceStepper() {
   const getStepContent = (stepIndex: number): React.ReactNode => {
     switch (stepIndex) {
       case 0:
-        return (
-          <BasicCallerForm
-            handleNext={handleNext}
-            ButtonColor1={"#2e7d32"}
-            ButtonColor2={"#4caf50"}
-          />
-        );
+        return <BasicCallerAutoForm handleNext={handleNext} ButtonColor1="#388e3c" ButtonColor2="#66bb6a"/>;
       case 1:
         return (
-          <AssuranceDescriptionIntake
+          <MonarchAddressIntake
             handleBack={handleBack}
             handleNext={handleNext}
           />
         );
       case 2:
         return (
-          <ConfirmationSave ButtonColor1={"#2e7d32"} ButtonColor2={"#1976d2"} />
+          <MonarchDescriptionIntake
+            handleBack={handleBack}
+            handleNext={handleNext}
+          />
         );
+      case 3:
+        return <ConfirmationSave ButtonColor1="#388e3c" ButtonColor2="#66bb6a"/>;
     }
   };
 
@@ -56,11 +69,13 @@ export default function AssuranceStepper() {
         elevation={1}
         sx={{
           padding: "1rem",
-          width: "25rem",
+          width: "20rem",
           borderRadius: "1rem",
         }}
       >
-        <FormProvider {...methods}>{getStepContent(activeStep)}</FormProvider>
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          {getStepContent(activeStep)}
+        </LocalizationProvider>
       </Paper>
 
       <Box
@@ -72,9 +87,9 @@ export default function AssuranceStepper() {
         borderRadius={"1rem"}
         minWidth={"14rem"}
         paddingY={"2rem"}
-        maxHeight={"12rem"}
+        height={"fit"}
       >
-        <Stepper activeStep={activeStep} orientation="vertical">
+        <Stepper activeStep={activeStep} orientation="vertical" sx={stepStyle}>
           {steps.map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>

@@ -4,7 +4,7 @@ import { IntakeLossTypeInputs } from "@/app/lib/definitions";
 import { Box, Button } from "@mui/material";
 import { blueGrey } from "@mui/material/colors";
 import { useForm } from "react-hook-form";
-import CustomMultiline from "../../customFormInput/customMultilineInput";
+import CustomMultiline from "../../customFormInput/customMultilineDescription";
 import PropertyLossType from "../../customFormInput/customPropertyLossType";
 
 interface IIntakeProps {

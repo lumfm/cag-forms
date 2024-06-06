@@ -1,4 +1,4 @@
-import { DatePicker } from "@mui/x-date-pickers";
+import { DateTimePicker } from "@mui/x-date-pickers";
 import { Control, Controller } from "react-hook-form";
 
 interface ICustomInputProps {
@@ -7,13 +7,13 @@ interface ICustomInputProps {
   label: string;
 }
 
-const CustomDatePicker = ({ name, control, label }: ICustomInputProps) => {
+const CustomDateTimePicker = ({ name, control, label }: ICustomInputProps) => {
   return (
     <Controller
       name={name}
       control={control}
       render={({ field: { onChange, value } }) => (
-        <DatePicker
+        <DateTimePicker
           onChange={onChange}
           value={value}
           label={label}
@@ -29,4 +29,4 @@ const CustomDatePicker = ({ name, control, label }: ICustomInputProps) => {
   );
 };
 
-export default CustomDatePicker;
+export default CustomDateTimePicker;

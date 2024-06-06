@@ -1,11 +1,13 @@
 "use client";
 
-import { Box, Button, MenuItem, TextField } from "@mui/material";
-import { useForm, useFormContext } from "react-hook-form";
+import { Box, Button } from "@mui/material";
+import { useForm } from "react-hook-form";
 import { BasicInputs } from "@/app/lib/definitions";
 import CustomFormBasicInput from "../customFormInput";
 import LanguageDropdown from "../customFormInput/customLanguageDropdown";
 import RelationshipDropdown from "../customFormInput/customAutoRelationshipDropdown";
+import dayjs from "dayjs";
+import CustomDateTimePicker from "../customFormInput/customDateTimePicker";
 
 interface IBasicFormProps {
   handleNext: () => void;
@@ -13,8 +15,12 @@ interface IBasicFormProps {
   ButtonColor2: string;
 }
 
-const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormProps) => {
-  const { handleSubmit } = useForm({
+const BasicCallerAutoForm = ({
+  handleNext,
+  ButtonColor1,
+  ButtonColor2,
+}: IBasicFormProps) => {
+  const { control, handleSubmit } = useForm({
     defaultValues: {
       policy_claim: "",
       firstName: "",
@@ -25,9 +31,9 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
       languageOther: "",
       relationship: "",
       relationshipOther: "",
+      date_time_of_loss: dayjs(new Date()),
     },
   });
-  const {control} = useFormContext()
 
   const onSubmit = (data: BasicInputs) => {
     console.log(data);
@@ -35,20 +41,14 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} >
       <Box
         display={"flex"}
         flexDirection={"column"}
         alignItems={"center"}
         gap={"1rem"}
+        height={'fit'}
       >
-        <CustomFormBasicInput
-          name="policy_claim"
-          label="Policy / Claim #"
-          control={control}
-          required={false}
-        />
-
         <CustomFormBasicInput
           name="firstName"
           label="First Name"
@@ -61,6 +61,12 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
           label="Last Name"
           control={control}
           required={false}
+        />
+
+        <RelationshipDropdown
+          name1="relationship"
+          name2="relationshipOther"
+          control={control}
         />
 
         <CustomFormBasicInput
@@ -77,15 +83,22 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
           required={false}
         />
 
-        <LanguageDropdown
-          name1="languagePref"
-          name2="languageOther"
+        <CustomFormBasicInput
+          name="policy_claim"
+          label="Policy / Claim #"
+          control={control}
+          required={false}
+        />
+
+        <CustomDateTimePicker
+          name="date_time_of_loss"
+          label="Date and Time of Loss"
           control={control}
         />
 
-        <RelationshipDropdown
-          name1="relationship"
-          name2="relationshipOther"
+        <LanguageDropdown
+          name1="languagePref"
+          name2="languageOther"
           control={control}
         />
 
@@ -107,4 +120,4 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
   );
 };
 
-export default BasicCallerForm;
+export default BasicCallerAutoForm;

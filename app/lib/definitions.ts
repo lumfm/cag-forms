@@ -26,6 +26,7 @@ export interface BasicInputs {
   relationship: callerRelationship;
   relationshipOther? : string;
   date_of_loss? : Date;
+  date_time_of_loss? : Date;
 }
 
 export enum IntakeReasonEnums {

@@ -3,11 +3,11 @@
 import * as React from "react";
 import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
 import ConfirmationSave from "../formUtils/confirmationSave";
-import BasicCallerFnolForm from "../formUtils/basicCallerFnolForm";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import MonarchAddressIntake from "../formUtils/monarch/monarchAddressIntake";
 import MonarchDescriptionIntake from "../formUtils/monarch/monarchDescriptionIntake";
+import BasicCallerPropertyForm from "../formUtils/basicCallerPropertyForm";
 
 const stepStyle = {
   "& .Mui-active": {
@@ -38,7 +38,7 @@ export default function MonarchStepper() {
   const getStepContent = (stepIndex: number): React.ReactNode => {
     switch (stepIndex) {
       case 0:
-        return <BasicCallerFnolForm handleNext={handleNext} />;
+        return <BasicCallerPropertyForm handleNext={handleNext} ButtonColor1={'#37474f'} ButtonColor2={'#607d8b'}/>;
       case 1:
         return (
           <MonarchAddressIntake
@@ -54,7 +54,7 @@ export default function MonarchStepper() {
           />
         );
       case 3:
-        return <ConfirmationSave />;
+        return <ConfirmationSave ButtonColor1={'#37474f'} ButtonColor2={'#ff8f00'}/>;
     }
   };
 

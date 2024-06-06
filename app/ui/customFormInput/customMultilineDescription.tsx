@@ -9,13 +9,14 @@ interface ICustomInputProps {
   required: boolean;
 }
 
-const CustomMultiline = ({
+const CustomMultilineDescription = ({
   name,
   control,
   label,
   rows,
   required,
 }: ICustomInputProps) => {
+
 
   return (
     <Controller
@@ -36,4 +37,4 @@ const CustomMultiline = ({
   );
 };
 
-export default CustomMultiline;
+export default CustomMultilineDescription;
