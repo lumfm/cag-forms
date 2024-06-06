@@ -15,6 +15,7 @@ const ReasonForCall = ({ name, control, handleChange }: ICustomInputProps) => {
     <Controller
       name={name}
       control={control}
+      rules={{required: true}}
       render={({ field: { value, onChange } }) => (
         <TextField
           label="Reason for Call"

@@ -21,6 +21,7 @@ const CustomMultilineIntake = ({
 }: ICustomInputProps) => {
   const { getValues } = useFormContext();
   const [template, setTemplate] = useState("");
+  const [language, setLanguage] = useState('')
 
 
     const firstName =
@@ -61,21 +62,27 @@ const CustomMultilineIntake = ({
       3
     )})${alternativeNumber.slice(3, 6)}-${alternativeNumber.slice(6, 10)}`;
 
+    
+    
     useEffect(() => {
+      
+      getValues("languagePref") === 'other' ? setLanguage(getValues("languageOther")) : setLanguage(getValues("languagePref")[0].toUpperCase() +
+      getValues("languagePref").substring(1));
+
       if (reason !== "status") {
         setTemplate(`Caller: ${firstName} ${lastName}, ${relationship}
-  Ph: ${fullPhone} - ${fullAltPhone}
+Ph: ${fullPhone} - ${fullAltPhone}
 Called to report an accident.
 Set claim up.
 Provided caller with the adj and claim information.
 Set 2 business days for callback expectations.
-Language Preference: ${languagePref}`);
+Language Preference: ${language}`);
       } else {
         setTemplate(`Caller: ${firstName} ${lastName}, ${relationship}
 Ph: ${fullPhone} - ${fullAltPhone}
 Reason:
 Resolution:
-Language Preference: ${languagePref}`);
+Language Preference: ${language}`);
       }
     }, [reason]);
 

@@ -57,7 +57,7 @@ const AssuranceDescriptionIntake = ({
           name="intake"
           label="Intake / Status Note"
           control={control}
-          rows={7}
+          rows={8}
           required={false}
           reason={reason}
         />
