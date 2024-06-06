@@ -52,20 +52,21 @@ const BasicCallerPropertyForm = ({
           name="firstName"
           label="First Name"
           control={control}
-          required={false}
+          required={true}
         />
 
         <CustomFormBasicInput
           name="lastName"
           label="Last Name"
           control={control}
-          required={false}
+          required={true}
         />
 
         <RelationshipDropdown
           name1="relationship"
           name2="relationshipOther"
           control={control}
+          required={true}
         />
 
         <CustomFormBasicInput
@@ -86,7 +87,7 @@ const BasicCallerPropertyForm = ({
           name="policy_claim"
           label="Policy / Claim #"
           control={control}
-          required={false}
+          required={true}
         />
 
         <CustomDatePicker
@@ -99,6 +100,7 @@ const BasicCallerPropertyForm = ({
           name1="languagePref"
           name2="languageOther"
           control={control}
+          required={true}
         />
 
         <Button

@@ -21,24 +21,19 @@ export interface BasicInputs {
   lastName: string;
   phoneNumber: string;
   alternativeNumber?: string;
-  languagePref: languageEnums;
+  languagePref: string;
   languageOther? : string;
-  relationship: callerRelationship;
+  relationship: string;
   relationshipOther? : string;
-  date_of_loss? : Date;
-  date_time_of_loss? : Date;
+  date_of_loss? : string;
+  date_time_of_loss? : string;
 }
 
-export enum IntakeReasonEnums {
-  accident= 'accident',
-  status= 'status',
-  fire= 'fire',
-  theft= 'theft',
-  other= 'other',
-}
+export type IntakeReasonEnums = 'accident' | 'status' | 'fire' | 'theft' | 'other' | '';
+
 
 export interface IntakeReasonInputs {
-  reason: IntakeReasonEnums,
+  reason: string,
   description?: string,
   intake: string,
 }

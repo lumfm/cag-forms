@@ -15,7 +15,7 @@ const CustomDatePicker = ({ name, control, label }: ICustomInputProps) => {
       render={({ field: { onChange, value } }) => (
         <DatePicker
           onChange={onChange}
-          value={value}
+          value={value as string}
           label={label}
           slotProps={{
             textField:{

@@ -20,7 +20,7 @@ const ReasonForCall = ({ name, control, handleChange }: ICustomInputProps) => {
         <TextField
           label="Reason for Call"
           select
-          value={value}
+          value ={value}
           onChange={(e) => {
             handleChange(e)
             onChange(e)

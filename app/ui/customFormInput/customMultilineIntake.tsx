@@ -88,7 +88,7 @@ Reason:
 Resolution:
 Language Preference: ${language}`);
       }
-    }, [reason]);
+    }, [reason, firstName, lastName, fullPhone, fullAltPhone, language, relation]);
 
 
   return (

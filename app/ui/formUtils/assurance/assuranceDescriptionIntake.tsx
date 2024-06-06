@@ -3,7 +3,7 @@
 import { IntakeReasonInputs } from "@/app/lib/definitions";
 import { Box, Button, } from "@mui/material";
 import { green } from "@mui/material/colors";
-import { useForm, useFormContext } from "react-hook-form";
+import { SubmitHandler, useForm, useFormContext } from "react-hook-form";
 import ReasonForCall from "../../customFormInput/customReasonForCall";
 import { useState } from "react";
 import CustomMultilineDescription from "../../customFormInput/customMultilineDescription";
@@ -22,15 +22,15 @@ const AssuranceDescriptionIntake = ({
 
   const { handleSubmit, reset } = useForm({
     defaultValues: {
-      reason: "",
       description: "",
+      reason: "",
       intake: "",
     },
   });
 
   const {control, getValues} = useFormContext()
 
-  const onSubmit = (data: IntakeReasonInputs) => {
+  const onSubmit : SubmitHandler<IntakeReasonInputs> = (data) => {
     console.log(data);
   };
 
