@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import MonarchAddressIntake from "../formUtils/monarch/monarchAddressIntake";
 import MonarchDescriptionIntake from "../formUtils/monarch/monarchDescriptionIntake";
 import BasicCallerAutoForm from "../formUtils/basicCallerAutoForm";
+import { FormProvider, useForm } from "react-hook-form";
 
 const stepStyle = {
   "& .Mui-active": {
@@ -24,8 +25,18 @@ const stepStyle = {
 
 export default function StarStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const methods = useForm();
 
-  const steps = ["Caller Information", "Named Insured / IV Driver", "IV", "CV Owner / Driver", "CV", "Additional Info", "Injured", "Accident Description"];
+  const steps = [
+    "Caller Information",
+    "Named Insured / IV Driver",
+    "IV",
+    "CV Owner / Driver",
+    "CV",
+    "Additional Info",
+    "Injured",
+    "Accident Description",
+  ];
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -38,7 +49,13 @@ export default function StarStepper() {
   const getStepContent = (stepIndex: number): React.ReactNode => {
     switch (stepIndex) {
       case 0:
-        return <BasicCallerAutoForm handleNext={handleNext} ButtonColor1="#388e3c" ButtonColor2="#66bb6a"/>;
+        return (
+          <BasicCallerAutoForm
+            handleNext={handleNext}
+            ButtonColor1="#388e3c"
+            ButtonColor2="#66bb6a"
+          />
+        );
       case 1:
         return (
           <MonarchAddressIntake
@@ -54,7 +71,9 @@ export default function StarStepper() {
           />
         );
       case 3:
-        return <ConfirmationSave ButtonColor1="#388e3c" ButtonColor2="#66bb6a"/>;
+        return (
+          <ConfirmationSave ButtonColor1="#388e3c" ButtonColor2="#66bb6a" />
+        );
     }
   };
 
@@ -73,9 +92,11 @@ export default function StarStepper() {
           borderRadius: "1rem",
         }}
       >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {getStepContent(activeStep)}
-        </LocalizationProvider>
+        <FormProvider {...methods}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {getStepContent(activeStep)}
+          </LocalizationProvider>
+        </FormProvider>
       </Paper>
 
       <Box

@@ -8,6 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import MonarchAddressIntake from "../formUtils/monarch/monarchAddressIntake";
 import MonarchDescriptionIntake from "../formUtils/monarch/monarchDescriptionIntake";
 import BasicCallerPropertyForm from "../formUtils/basicCallerPropertyForm";
+import { FormProvider, useForm } from "react-hook-form";
 
 const stepStyle = {
   "& .Mui-active": {
@@ -24,6 +25,7 @@ const stepStyle = {
 
 export default function MonarchStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const methods = useForm();
 
   const steps = ["Caller Information", "Insured Address", "Loss Description"];
 
@@ -38,7 +40,13 @@ export default function MonarchStepper() {
   const getStepContent = (stepIndex: number): React.ReactNode => {
     switch (stepIndex) {
       case 0:
-        return <BasicCallerPropertyForm handleNext={handleNext} ButtonColor1={'#37474f'} ButtonColor2={'#607d8b'}/>;
+        return (
+          <BasicCallerPropertyForm
+            handleNext={handleNext}
+            ButtonColor1={"#37474f"}
+            ButtonColor2={"#607d8b"}
+          />
+        );
       case 1:
         return (
           <MonarchAddressIntake
@@ -54,7 +62,9 @@ export default function MonarchStepper() {
           />
         );
       case 3:
-        return <ConfirmationSave ButtonColor1={'#37474f'} ButtonColor2={'#ff8f00'}/>;
+        return (
+          <ConfirmationSave ButtonColor1={"#37474f"} ButtonColor2={"#ff8f00"} />
+        );
     }
   };
 
@@ -73,9 +83,11 @@ export default function MonarchStepper() {
           borderRadius: "1rem",
         }}
       >
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          {getStepContent(activeStep)}
-        </LocalizationProvider>
+        <FormProvider {...methods}>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            {getStepContent(activeStep)}
+          </LocalizationProvider>
+        </FormProvider>
       </Paper>
 
       <Box

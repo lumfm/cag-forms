@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Button } from "@mui/material";
-import { useForm } from "react-hook-form";
+import { useForm, useFormContext } from "react-hook-form";
 import { BasicInputs } from "@/app/lib/definitions";
 import CustomFormBasicInput from "../customFormInput";
 import LanguageDropdown from "../customFormInput/customLanguageDropdown";
@@ -20,22 +20,24 @@ const BasicCallerAutoForm = ({
   ButtonColor1,
   ButtonColor2,
 }: IBasicFormProps) => {
-  const { control, handleSubmit } = useForm({
-    defaultValues: {
-      policy_claim: "",
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      alternativeNumber: "",
-      languagePref: "",
-      languageOther: "",
-      relationship: "",
-      relationshipOther: "",
-      date_time_of_loss: dayjs(new Date()),
-    },
-  });
+  // const { handleSubmit } = useForm({
+  //   defaultValues: {
+  //     policy_claim: "",
+  //     firstName: "",
+  //     lastName: "",
+  //     phoneNumber: "",
+  //     alternativeNumber: "",
+  //     languagePref: "",
+  //     languageOther: "",
+  //     relationship: "",
+  //     relationshipOther: "",
+  //     date_time_of_loss: dayjs(new Date()),
+  //   },
+  // });
+  const {handleSubmit} = useFormContext()
 
-  const onSubmit = (data: BasicInputs) => {
+
+  const onSubmit = (data: any) => {
     console.log(data);
     handleNext();
   };
@@ -52,55 +54,47 @@ const BasicCallerAutoForm = ({
         <CustomFormBasicInput
           name="firstName"
           label="First Name"
-          control={control}
           required={true}
         />
 
         <CustomFormBasicInput
           name="lastName"
           label="Last Name"
-          control={control}
           required={true}
         />
 
         <RelationshipDropdown
           name1="relationship"
           name2="relationshipOther"
-          control={control}
           required={true}
         />
 
         <CustomFormBasicInput
           name="phoneNumber"
           label="Phone Number"
-          control={control}
           required={true}
         />
 
         <CustomFormBasicInput
           name="alternativeNumber"
           label="Alternative Number"
-          control={control}
           required={false}
         />
 
         <CustomFormBasicInput
           name="policy_claim"
           label="Policy / Claim #"
-          control={control}
           required={true}
         />
 
         <CustomDateTimePicker
           name="date_time_of_loss"
           label="Date and Time of Loss"
-          control={control}
         />
 
         <LanguageDropdown
           name1="languagePref"
           name2="languageOther"
-          control={control}
           required={true}
         />
 

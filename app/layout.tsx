@@ -24,8 +24,8 @@ export default function RootLayout({
         <Box
           display={"flex"}
           flexDirection={"column"}
-          justifyContent={"space-between"}
-          height={"100vh"}
+          justifyContent={'flex-start'}
+          height={'100vh'}
         >
           <Header />
 
@@ -34,8 +34,10 @@ export default function RootLayout({
             <Box
               display={"flex"}
               justifyContent={"center"}
-              height={"100vh"}
               bgcolor={grey[400]}
+              height={'100%'}
+              flexGrow={1}
+              overflow={'auto'}
             >
               {children}
             </Box>

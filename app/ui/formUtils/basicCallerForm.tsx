@@ -14,22 +14,22 @@ interface IBasicFormProps {
 }
 
 const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormProps) => {
-  const { handleSubmit } = useForm({
-    defaultValues: {
-      policy_claim: "",
-      firstName: "",
-      lastName: "",
-      phoneNumber: "",
-      alternativeNumber: "",
-      languagePref: "",
-      languageOther: "",
-      relationship: "",
-      relationshipOther: "",
-    },
-  });
-  const {control} = useFormContext()
+  // const methods = useForm({
+  //   defaultValues: {
+  //     policy_claim: "",
+  //     firstName: "",
+  //     lastName: "",
+  //     phoneNumber: "",
+  //     alternativeNumber: "",
+  //     languagePref: "",
+  //     languageOther: "",
+  //     relationship: "",
+  //     relationshipOther: "",
+  //   },
+  // });
+  const {handleSubmit} = useFormContext()
 
-  const onSubmit = (data: BasicInputs) => {
+  const onSubmit = (data: any) => {
     console.log(data);
     handleNext();
   };
@@ -45,50 +45,45 @@ const BasicCallerForm = ({ handleNext, ButtonColor1, ButtonColor2 }: IBasicFormP
         <CustomFormBasicInput
           name="policy_claim"
           label="Policy / Claim #"
-          control={control}
           required={true}
+          minLength={10}
+          maxLength={12}
         />
 
         <CustomFormBasicInput
           name="firstName"
           label="First Name"
-          control={control}
-          required={true}
+          required={'First Name is required'}
         />
 
         <CustomFormBasicInput
           name="lastName"
           label="Last Name"
-          control={control}
-          required={true}
+          required={'Last Name is required'}
         />
 
         <CustomFormBasicInput
           name="phoneNumber"
           label="Phone Number"
-          control={control}
-          required={true}
+          required={'Phone Number is required'}
         />
 
         <CustomFormBasicInput
           name="alternativeNumber"
           label="Alternative Number"
-          control={control}
           required={false}
         />
 
         <LanguageDropdown
           name1="languagePref"
           name2="languageOther"
-          control={control}
-          required={true}
+          required={'Language Preference is required'}
         />
 
         <RelationshipDropdown
           name1="relationship"
           name2="relationshipOther"
-          control={control}
-          required={true}
+          required={'Relationship is required'}
         />
 
         <Button

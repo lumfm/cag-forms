@@ -1,17 +1,18 @@
 import { callerOptions } from "@/app/lib/callerOptions";
 import { MenuItem, TextField } from "@mui/material";
 import { useState } from "react";
-import { Control, Controller } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 
 interface ICustomInputProps {
   name1: string;
   name2: string;
-  control: Control<any>;
-  required: boolean;
+  required: string | boolean;
 }
 
-const RelationshipDropdown = ({ name1, name2, control, required }: ICustomInputProps) => {
+const RelationshipDropdown = ({ name1, name2, required }: ICustomInputProps) => {
   const [selectedRelationship, setSelectedRelationship] = useState("");
+  const {control} = useFormContext()
+
 
   return (
     <>

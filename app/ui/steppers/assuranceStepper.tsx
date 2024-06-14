@@ -56,7 +56,7 @@ export default function AssuranceStepper() {
         elevation={1}
         sx={{
           padding: "1rem",
-          width: "25rem",
+          width: "20rem",
           borderRadius: "1rem",
         }}
       >

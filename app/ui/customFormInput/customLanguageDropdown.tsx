@@ -1,23 +1,21 @@
 import { languages } from "@/app/lib/languages";
 import {
   FormControl,
-  InputLabel,
   MenuItem,
-  Select,
   TextField,
 } from "@mui/material";
 import { useState } from "react";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 
 interface ICustomInputProps {
   name1: string;
   name2: string;
-  control: Control<any>;
-  required: boolean;
+  required: string | boolean;
 }
 
-const LanguageDropdown = ({ name1, name2, control, required }: ICustomInputProps) => {
+const LanguageDropdown = ({ name1, name2, required }: ICustomInputProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState("");
+  const {control, formState:{errors}} = useFormContext()
 
   return (
     <FormControl size="small" fullWidth sx={{

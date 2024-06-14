@@ -1,35 +1,50 @@
 import { TextField } from "@mui/material";
-import { Control, Controller } from "react-hook-form";
+import { Control, Controller, useFormContext } from "react-hook-form";
 
 interface ICustomInputProps {
   name: string;
-  control: Control<any>;
   label: string;
-  required: boolean;
+  required: string | boolean;
+  minLength?: number;
+  maxLength?: number;
 }
 
 const CustomFormBasicInput = ({
   name,
-  control,
   label,
   required,
+  minLength,
+  maxLength,
 }: ICustomInputProps) => {
+  const {
+    control,
+    formState: { errors },
+  } = useFormContext();
 
   return (
-    <Controller
-      name={name}
-      control={control}
-      rules={{required: required}}
-      render={({ field: {onChange, value}}) => (
-        <TextField
-          label={label}
-          onChange={onChange}
-          value={value}
-          size="small"
-          fullWidth
-        />
+    <>
+      <Controller
+        name={name}
+        control={control}
+        rules={{
+          required: required,
+          minLength: minLength,
+          maxLength: maxLength,
+        }}
+        render={({ field: { onChange, value } }) => (
+          <TextField
+            label={label}
+            onChange={onChange}
+            value={value}
+            size="small"
+            fullWidth
+          />
+        )}
+      />
+      {errors.name?.type === "required" && (
+        <p role="alert">This field is required`</p>
       )}
-    />
+    </>
   );
 };
 
