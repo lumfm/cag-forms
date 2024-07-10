@@ -6,6 +6,7 @@ import AssuranceDescriptionIntake from "../formUtils/assurance/assuranceDescript
 import { Box, Paper, Step, StepLabel, Stepper } from "@mui/material";
 import ConfirmationSave from "../formUtils/confirmationSave";
 import { FormProvider, useForm } from "react-hook-form";
+import { blue } from "@mui/material/colors";
 
 export default function AssuranceStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
@@ -27,8 +28,9 @@ export default function AssuranceStepper() {
         return (
           <BasicCallerForm
             handleNext={handleNext}
-            ButtonColor1={"#2e7d32"}
-            ButtonColor2={"#4caf50"}
+            ButtonColor1={blue[800]}
+            ButtonColor2={blue[600]}
+            title={steps[0]}
           />
         );
       case 1:
@@ -36,6 +38,7 @@ export default function AssuranceStepper() {
           <AssuranceDescriptionIntake
             handleBack={handleBack}
             handleNext={handleNext}
+            title={steps[1]}
           />
         );
       case 2:
@@ -50,13 +53,13 @@ export default function AssuranceStepper() {
       display={"flex"}
       width={"100%"}
       justifyContent={"space-evenly"}
-      marginTop={5}
+      marginTop={1}
     >
       <Paper
         elevation={1}
         sx={{
           padding: "1rem",
-          width: "20rem",
+          width: "23rem",
           borderRadius: "1rem",
         }}
       >
@@ -70,7 +73,7 @@ export default function AssuranceStepper() {
         alignItems={"center"}
         bgcolor={"whitesmoke"}
         borderRadius={"1rem"}
-        minWidth={"14rem"}
+        minWidth={"13rem"}
         paddingY={"2rem"}
         maxHeight={"12rem"}
       >

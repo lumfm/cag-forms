@@ -7,6 +7,7 @@ interface ICustomInputProps {
   required: string | boolean;
   minLength?: number;
   maxLength?: number;
+  fullWidth?: boolean;
 }
 
 const CustomFormBasicInput = ({
@@ -15,6 +16,7 @@ const CustomFormBasicInput = ({
   required,
   minLength,
   maxLength,
+  fullWidth,
 }: ICustomInputProps) => {
   const {
     control,
@@ -37,7 +39,7 @@ const CustomFormBasicInput = ({
             onChange={onChange}
             value={value}
             size="small"
-            fullWidth
+            fullWidth={fullWidth}
           />
         )}
       />

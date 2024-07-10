@@ -38,6 +38,16 @@ const Assurance: NextPage = () => {
 
         <Divider flexItem variant="middle"/>
 
+        <Typography
+        variant="body1"
+        textAlign={"center"}
+        marginBottom={2}
+        marginTop={2}
+        width={'85%'}
+      >
+        "Thank you for calling Assurance America. My name is ______. Are you calling to file a new claim or do you have an existing one?"
+      </Typography>
+
         <AssuranceStepper />
 
       </Box>
